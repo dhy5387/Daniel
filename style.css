@@ -1,1 +1,33 @@
-/* Add styles here */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.lotto-numbers-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.lotto-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  margin: 0 5px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#generate-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}

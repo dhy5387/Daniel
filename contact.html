@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제휴 문의</title>
+    <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+    <button id="theme-toggle" aria-label="테마 전환">🌙</button>
+    <div class="container">
+        <h1>제휴 문의</h1>
+        <p style="text-align:center; color:#666; margin-bottom:24px;">제휴 및 협력 문의를 남겨주시면 빠르게 연락드리겠습니다.</p>
+
+        <form id="contact-form" action="https://formspree.io/f/mzdkeagl" method="POST">
+            <label for="name">담당자 이름 *</label>
+            <input type="text" id="name" name="name" placeholder="홍길동" required>
+
+            <label for="company">회사명 *</label>
+            <input type="text" id="company" name="company" placeholder="(주)회사명" required>
+
+            <label for="email">이메일 *</label>
+            <input type="email" id="email" name="email" placeholder="example@company.com" required>
+
+            <label for="phone">연락처</label>
+            <input type="tel" id="phone" name="phone" placeholder="010-0000-0000">
+
+            <label for="type">제휴 유형</label>
+            <select id="type" name="type">
+                <option value="">선택해주세요</option>
+                <option value="광고/마케팅">광고 / 마케팅</option>
+                <option value="콘텐츠 제휴">콘텐츠 제휴</option>
+                <option value="기술 협력">기술 협력</option>
+                <option value="기타">기타</option>
+            </select>
+
+            <label for="message">문의 내용 *</label>
+            <textarea id="message" name="message" rows="6" placeholder="제휴 목적 및 세부 내용을 작성해주세요." required></textarea>
+
+            <button type="submit">문의 보내기</button>
+        </form>
+
+        <div id="success-msg" style="display:none; text-align:center; padding:20px; color:green;">
+            ✅ 문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.
+        </div>
+
+        <p style="text-align:center; margin-top:20px;"><a href="/">← 홈으로 돌아가기</a></p>
+    </div>
+
+    <script>
+        const form = document.getElementById('contact-form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = new FormData(form);
+            const res = await fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+            if (res.ok) {
+                form.style.display = 'none';
+                document.getElementById('success-msg').style.display = 'block';
+            } else {
+                alert('전송 중 오류가 발생했습니다. 다시 시도해주세요.');
+            }
+        });
+    </script>
+    <script defer type="text/javascript" src="/main.js"></script>
+</body>
+</html>

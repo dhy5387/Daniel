@@ -1,81 +1,41 @@
-:root {
-  --bg-color: #ffffff;
-  --text-color: #222222;
-  --number-bg: #f0f0f0;
-  --number-text: #222222;
-  --btn-bg: #ffffff;
-  --btn-text: #222222;
-  --btn-border: #cccccc;
-}
-
-[data-theme="dark"] {
-  --bg-color: #1a1a2e;
-  --text-color: #e0e0e0;
-  --number-bg: #16213e;
-  --number-text: #e0e0e0;
-  --btn-bg: #16213e;
-  --btn-text: #e0e0e0;
-  --btn-border: #444466;
-}
-
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  margin: 0;
-  font-family: sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
+    font-family: sans-serif;
+    margin: 20px;
 }
 
-.lotto-numbers-container {
-  display: flex;
-  margin-bottom: 20px;
+.container {
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.lotto-number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: var(--number-bg);
-  color: var(--number-text);
-  margin: 0 5px;
-  font-size: 20px;
-  font-weight: bold;
-  transition: background-color 0.3s, color 0.3s;
+h1 {
+    text-align: center;
 }
 
-#generate-btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: var(--btn-bg);
-  color: var(--btn-text);
-  border: 1px solid var(--btn-border);
-  border-radius: 6px;
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+form {
+    display: flex;
+    flex-direction: column;
 }
 
-#theme-toggle {
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  width: 42px;
-  height: 42px;
-  font-size: 20px;
-  cursor: pointer;
-  background-color: var(--btn-bg);
-  color: var(--btn-text);
-  border: 1px solid var(--btn-border);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s, border-color 0.3s;
+label {
+    margin-bottom: 5px;
+}
+
+input, textarea, select {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }

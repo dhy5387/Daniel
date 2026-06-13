@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 문서 작업 보조 시스템</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>AI 문서 작업 보조</h1>
+      <p class="subtitle">음성으로 말씀하시면 AI가 신청서를 자동으로 작성합니다</p>
+    </header>
+
+    <!-- STEP 1: 음성 입력 -->
+    <section class="card" id="section-voice">
+      <h2 class="step-title"><span class="step-badge">1</span> 음성 입력</h2>
+      <div class="mic-area">
+        <button id="btn-record" class="btn-mic" title="마이크 버튼을 누르고 말씀해주세요">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="40" height="40">
+            <path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V20H9v2h6v-2h-2v-2.08A7 7 0 0 0 19 11h-2z"/>
+          </svg>
+        </button>
+        <p id="mic-label" class="mic-label">마이크 버튼을 누르고 말씀해주세요</p>
+        <div id="recording-indicator" class="recording-indicator hidden">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <div class="transcript-area">
+        <label>인식된 텍스트</label>
+        <textarea id="transcript-box" rows="4" placeholder="음성 인식 결과가 여기에 표시됩니다. 직접 수정도 가능합니다."></textarea>
+      </div>
+
+      <div class="action-row">
+        <button id="btn-fill" class="btn-primary" disabled>신청서 자동 기입</button>
+        <button id="btn-reset" class="btn-secondary">초기화</button>
+      </div>
+    </section>
+
+    <!-- STEP 2: 신청서 자동 기입 결과 -->
+    <section class="card hidden" id="section-form">
+      <h2 class="step-title"><span class="step-badge">2</span> 신청서 기입 결과</h2>
+      <div id="form-fields-list" class="form-fields-list"></div>
+
+      <div id="issues-banner" class="hidden"></div>
+
+      <div class="action-row">
+        <button id="btn-correction" class="btn-warning hidden">보완 요청 메시지 생성</button>
+        <button id="btn-submit" class="btn-success hidden">최종 제출</button>
+      </div>
+    </section>
+
+    <!-- STEP 3: 보완 요청 메시지 -->
+    <section class="card hidden" id="section-message">
+      <h2 class="step-title"><span class="step-badge">3</span> 보완 요청 문자 메시지</h2>
+      <div class="message-box" id="correction-message-box"></div>
+      <p class="message-note">위 메시지가 신청자의 전화번호로 자동 발송됩니다.</p>
+      <div id="phone-missing-notice" class="hidden">
+        <p class="error-note">전화번호가 누락되어 담당자가 직접 입력해야 합니다.</p>
+        <input type="text" id="manual-phone" placeholder="전화번호 직접 입력 (예: 010-1234-5678)" />
+        <button id="btn-send-manual" class="btn-primary">발송</button>
+      </div>
+    </section>
+
+    <!-- OCR 탭 -->
+    <section class="card" id="section-ocr">
+      <h2 class="step-title"><span class="step-badge">+</span> 신청서 이미지 OCR 검수</h2>
+      <p class="ocr-desc">작성 완료된 신청서 이미지를 업로드하면 OCR로 텍스트를 추출하고 누락/오류를 검수합니다.</p>
+      <label class="upload-label" for="ocr-upload">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        이미지 업로드 (PNG, JPG)
+        <input type="file" id="ocr-upload" accept="image/png,image/jpeg,image/jpg,image/webp" hidden />
+      </label>
+      <div id="ocr-preview-area" class="hidden">
+        <img id="ocr-preview-img" alt="업로드된 신청서" />
+      </div>
+      <div id="ocr-result" class="ocr-result hidden"></div>
+    </section>
+
+    <div id="toast" class="toast hidden"></div>
+    <div id="loading-overlay" class="loading-overlay hidden">
+      <div class="spinner"></div>
+      <p id="loading-text">처리 중...</p>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

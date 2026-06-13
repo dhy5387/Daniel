@@ -21,7 +21,7 @@
       enable = true;
       previews = {
         web = {
-          command = ["python3" "-m" "http.server" "$PORT" "--bind" "0.0.0.0"];
+          command = ["bash" "-c" "cd /home/user/projectcapstone/doc-assistant && source venv/bin/activate && cd backend && python -m uvicorn main:app --host 0.0.0.0 --port $PORT"];
           manager = "web";
         };
       };
@@ -30,15 +30,11 @@
     workspace = {
       # Runs when a workspace is first created
       onCreate = {
-        # Example: install JS dependencies from NPM
-        # npm-install = "npm install";
-        # Open editors for the following files by default, if they exist:
         default.openFiles = [ "style.css" "main.js" "index.html" ];
       };
       # Runs when the workspace is (re)started
       onStart = {
-        # Example: start a background task to watch and re-build backend code
-        # watch-backend = "npm run watch-backend";
+        install-deps = "cd /home/user/projectcapstone/doc-assistant && python3 -m venv venv; source venv/bin/activate && pip install -q -r requirements.txt";
       };
     };
   };

@@ -1,0 +1,8 @@
+.env
+doc-assistant/venv/
+doc-assistant/uploads/
+doc-assistant/outputs/
+__pycache__/
+*.pyc
+.wrangler/
+.claude/
